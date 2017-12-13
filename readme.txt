@@ -58,4 +58,29 @@ pom.xml引入相关jar包
 	</dependency>
 </dependencies>
 
-三、代码开发
+三、Hadoop文件操作命令
+hadoop上传文件
+bin/hadoop fs -put /usr/local/hadoop/hadoop_temp/1.txt /
+bin/hadoop fs -put /usr/local/hadoop/hadoop_temp/1.txt /hadoop
+
+查看HDFS里面文件
+bin/hadoop fs -ls /
+
+在hdfs中创建文件夹：bin/hadoop fs -mkdir -p /user/hadoop/input
+创建文件：bin/hadoop fs -put /usr/local/hadoop/hadoop_temp/2.txt /user/hadoop/input/
+查看：bin/hadoop fs -ls /user/hadoop/input/*
+
+修改文件的权限：
+bin/hadoop fs -chmod 777 /user/hadoop/input/2.txt
+查看文件权限修改情况：bin/hadoop fs -ls /user/hadoop/input/*
+
+查看运行结果：
+bin/hadoop fs -cat /user/hadoop/input/2.txt
+
+删除HDFS中的文件夹：
+bin/hadoop fs -rm -r /hadoop
+查看删除情况：bin/hadoop fs -ls /
+
+四、代码开发
+1、服务器环境上传1.txt文件
+2、
