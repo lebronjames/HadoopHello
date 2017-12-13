@@ -71,7 +71,7 @@ bin/hadoop fs -ls /
 查看：bin/hadoop fs -ls /user/hadoop/input/*
 
 修改文件的权限：
-bin/hadoop fs -chmod 777 /user/hadoop/input/2.txt
+bin/hadoop fs -chmod -R 777 /user/hadoop/input/
 查看文件权限修改情况：bin/hadoop fs -ls /user/hadoop/input/*
 
 查看运行结果：
@@ -81,6 +81,21 @@ bin/hadoop fs -cat /user/hadoop/input/2.txt
 bin/hadoop fs -rm -r /hadoop
 查看删除情况：bin/hadoop fs -ls /
 
-四、代码开发
-1、服务器环境上传1.txt文件
+四、环境准备（太坑。。。）
+1、服务器telnet 127.0.0.1 9000 通
+	telnet 10.5.2.241 9000 不通
+2、客户端 telnet 10.5.2.241 9000 不通
+3、服务器 core-site.xml(fs.defaultFS --> hdfs://asp-nj-srv98:9000)
+4、客户端 修改 hosts文件 (10.5.2.241 asp-nj-srv98)
+5、服务器 修改 /etc/hosts(127.0.0.1   localhost、10.5.2.241 asp-nj-srv98)
+6、客户端 telnet 10.5.2.241 9000 通
+	服务器端 telnet 10.5.2.241 9000 通
+7、    创建文件夹：bin/hadoop fs -mkdir -p /user/hadoop/input
+	创建文件：bin/hadoop fs -put /usr/local/hadoop/hadoop_temp/1.txt /user/hadoop/input/
+	bin/hadoop fs -put /usr/local/hadoop/hadoop_temp/2.txt /user/hadoop/input/
+	修改文件权限：bin/hadoop fs -chmod -R 777 /user/hadoop/input/
+	查看文件权限：bin/hadoop fs -ls /user/hadoop/input/
+
+五、代码开发
+1、
 2、
