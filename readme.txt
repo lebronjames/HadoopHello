@@ -98,7 +98,7 @@ bin/hadoop fs -rm -r /hadoop
 8、测试期间关闭权限检查
 需要在namenode的hdfs-site.xml上，添加配置：(dfs.permissions.enabled -->false)
 
-五、代码开发
+五、HDFS代码开发
 public class HelloHDFS {
 	public static void main(String[] args) throws Exception {
 		//版本1
@@ -150,3 +150,44 @@ public class HelloHDFS {
 	}
 }
 
+六、Yarn配置
+配置yarn-size.xml（resourceManager和dataManager每一个节点都需要配置yarn-size.xml，配置如下：）
+<configuration>
+ <property>
+    <name>yarn.resourcemanager.hostname</name>
+    <value>asp-nj-srv98</value>
+ </property>
+ 
+ <property>  
+    <name>yarn.nodemanager.aux-services</name>  
+    <value>mapreduce_shuffle</value>  
+ </property>  
+ 
+ <property>
+    <name>yarn.nodemanager.auxservices.mapreduce.shuffle.class</name>
+    <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+ </property>  
+</configuration>
+
+配置mapred-site.xml，只需要在master的/usr/local/hadoop/etc/hadoop目录下，cp mapred-site.xml.template mapred-site.xml
+编辑mapred-site.xml
+<configuration>
+  <property>
+    <name>mapreduce.framework.name</name>
+    <value>yarn</value>
+  </property>
+</configuration>
+
+重启hdfs、yarn
+Yarn访问地址：http://10.5.2.241:8088/
+
+七、文件配置
+1、上传一个测试文件到hadoop的/user/hadoop/input/目录上
+bin/hadoop fs -put /usr/local/hadoop/hadoop_temp/3.txt /user/hadoop/input/
+2、find /usr/local/hadoop -name *example*.jar 查找示例程序文件
+find /usr/local/hadoop -name *example*.jar
+3、通过hadoop jar xxx.jar wordcount /input /output来运行示例程序
+bin/hadoop jar /usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.3.jar 
+wordcount /user/hadoop/input/ /output
+4、查看执行结果
+bin/hadoop fs -text /output/part-r-00000
