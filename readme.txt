@@ -187,7 +187,70 @@ bin/hadoop fs -put /usr/local/hadoop/hadoop_temp/3.txt /user/hadoop/input/
 2、find /usr/local/hadoop -name *example*.jar 查找示例程序文件
 find /usr/local/hadoop -name *example*.jar
 3、通过hadoop jar xxx.jar wordcount /input /output来运行示例程序
-bin/hadoop jar /usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.3.jar 
-wordcount /user/hadoop/input/ /output
+17/12/14 17:51:31 INFO mapreduce.Job: The url to track the job: http://asp-nj-srv98:8088/proxy/application_1513155455003_0003/
+17/12/14 17:51:31 INFO mapreduce.Job: Running job: job_1513155455003_0003
+17/12/14 17:51:36 INFO mapreduce.Job: Job job_1513155455003_0003 running in uber mode : false
+17/12/14 17:51:36 INFO mapreduce.Job:  map 0% reduce 0%
+17/12/14 17:51:41 INFO mapreduce.Job:  map 50% reduce 0%
+17/12/14 17:51:42 INFO mapreduce.Job:  map 100% reduce 0%
+17/12/14 17:51:45 INFO mapreduce.Job:  map 100% reduce 100%
+17/12/14 17:51:45 INFO mapreduce.Job: Job job_1513155455003_0003 completed successfully
+17/12/14 17:51:45 INFO mapreduce.Job: Counters: 49
+	File System Counters
+		FILE: Number of bytes read=1511
+		FILE: Number of bytes written=597225
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=1623
+		HDFS: Number of bytes written=1057
+		HDFS: Number of read operations=15
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=2
+	Job Counters 
+		Launched map tasks=4
+		Launched reduce tasks=1
+		Data-local map tasks=4
+		Total time spent by all maps in occupied slots (ms)=11939
+		Total time spent by all reduces in occupied slots (ms)=1632
+		Total time spent by all map tasks (ms)=11939
+		Total time spent by all reduce tasks (ms)=1632
+		Total vcore-milliseconds taken by all map tasks=11939
+		Total vcore-milliseconds taken by all reduce tasks=1632
+		Total megabyte-milliseconds taken by all map tasks=12225536
+		Total megabyte-milliseconds taken by all reduce tasks=1671168
+	Map-Reduce Framework
+		Map input records=62
+		Map output records=177
+		Map output bytes=1849
+		Map output materialized bytes=1529
+		Input split bytes=456
+		Combine input records=177
+		Combine output records=111
+		Reduce input groups=110
+		Reduce shuffle bytes=1529
+		Reduce input records=111
+		Reduce output records=110
+		Spilled Records=222
+		Shuffled Maps =4
+		Failed Shuffles=0
+		Merged Map outputs=4
+		GC time elapsed (ms)=430
+		CPU time spent (ms)=3060
+		Physical memory (bytes) snapshot=1250983936
+		Virtual memory (bytes) snapshot=10586755072
+		Total committed heap usage (bytes)=925892608
+	Shuffle Errors
+		BAD_ID=0
+		CONNECTION=0
+		IO_ERROR=0
+		WRONG_LENGTH=0
+		WRONG_MAP=0
+		WRONG_REDUCE=0
+	File Input Format Counters 
+		Bytes Read=1167
+	File Output Format Counters 
+		Bytes Written=1057
 4、查看执行结果
+bin/hadoop fs -ls /output
 bin/hadoop fs -text /output/part-r-00000
